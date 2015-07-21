@@ -1,0 +1,44 @@
+{
+  "scripts": {
+    "dev": "redis-server & watchify ./web/src/index.js -o ./web/dist/bundle.js -v & stylus --include-css -w web/styl/index.styl -o web/dist/bundle.css & nodemon server.js",
+    "browserify": "watchify ./web/src/index.js -o ./web/dist/bundle.js -v & node server"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
+    "normalize.css": "^3.0.3",
+    "reactify": "^1.1.1",
+    "stylus": "^0.52.0",
+    "watchify": "^3.2.2"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "optional": [
+            "es7.classProperties"
+          ]
+        }
+      ],
+      "reactify"
+    ]
+  },
+  "dependencies": {
+    "ampersand-router": "^3.0.2",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "express-jwt": "^3.0.1",
+    "joi": "^6.6.0",
+    "jsonwebtoken": "^5.0.4",
+    "react": "^0.13.3",
+    "redis": "^0.12.1",
+    "uuid": "^2.0.1",
+    "xhr": "^2.0.2",
+    "xtend": "^4.0.0"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
