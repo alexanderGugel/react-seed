@@ -1,6 +1,10 @@
 export function handleInternalLink (e) {
   e.preventDefault()
-  this.props.router.navigate(e.currentTarget.getAttribute('href'))
+  var router = this.props.router || this.router
+  if (!router) {
+    throw new Error('Missing router for handling internal link!')
+  }
+  router.navigate(e.target.getAttribute('href'))
 }
 
 export function handleInputChange (e) {

@@ -51,13 +51,30 @@ export default class App extends React.Component {
   render () {
     switch (this.state.route) {
       case 'signin':
-        return <div><SignIn router={this.router} onToken={this.onToken} /></div>
+        return <SignIn router={this.router} onToken={this.onToken} />
       case 'signup':
-        return <div><SignUp router={this.router} onToken={this.onToken} /></div>
+        return <SignUp router={this.router} onToken={this.onToken} />
       case 'settings':
-        return <div><Settings router={this.router} token={this.state.token} /></div>
+        return <Settings router={this.router} />
       case 'root':
-        return <div>Hello World!</div>
+        return (
+          <div>
+            <h1>Hello { this.state.token || 'Unknown' }!</h1>
+            {
+              this.state.token ? (
+                <ul>
+                  <li><a href='/signout' onClick={this.handleInternalLink}>Sign Out</a></li>
+                  <li><a href='/settings' onClick={this.handleInternalLink}>Settings</a></li>
+                </ul>
+              ) : (
+                <ul>
+                  <li><a href='/signin' onClick={this.handleInternalLink}>Sign In</a></li>
+                  <li><a href='/signup' onClick={this.handleInternalLink}>Sign Up</a></li>
+                </ul>
+              )
+            }
+          </div>
+        )
     }
   }
 }
